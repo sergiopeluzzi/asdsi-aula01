@@ -15,7 +15,7 @@ export class ClientesServiceHttp {
         headers: new HttpHeaders({ "Content-Type": "application/json" }),
     };
 
-    getClientes(): Observable<ICliente> {
-        return this.http.get<ICliente>(this.apiUrl);
+    getClientes(): Observable<ICliente[]> {
+        return this.http.get<ICliente[]>(this.apiUrl);
     }
 }

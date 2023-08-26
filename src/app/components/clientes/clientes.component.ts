@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ICliente } from "../../models/cliente.model";
 import { ClientesServiceHttp } from "src/app/services-http/clientes.service.http";
+import { Observable } from "rxjs";
 
 const clientes: ICliente[] = [
     {
@@ -34,6 +35,13 @@ const clientes: ICliente[] = [
     templateUrl: "./clientes.component.html",
     styleUrls: ["./clientes.component.css"],
 })
-export class ClientesComponent {
-    dataSource: ICliente[] = clientes;
+export class ClientesComponent implements OnInit {
+    constructor(private clientesServiceHttp: ClientesServiceHttp) {}
+
+    clientes: ICliente[] = clientes;
+    dataSource$: Observable<ICliente[]> = new Observable<ICliente[]>();
+
+    ngOnInit(): void {
+        this.dataSource$ = this.clientesServiceHttp.getClientes();
+    }
 }
