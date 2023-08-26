@@ -39,9 +39,6 @@ export class ClientesComponent implements OnInit {
     constructor(private clientesServiceHttp: ClientesServiceHttp) {}
 
     clientes: ICliente[] = clientes;
-    dataSource$: Observable<ICliente[]> = new Observable<ICliente[]>();
 
-    ngOnInit(): void {
-        this.dataSource$ = this.clientesServiceHttp.getClientes();
-    }
+    ngOnInit(): void {}
 }
