@@ -1,34 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ICliente } from "../../models/cliente.model";
 import { ClientesServiceHttp } from "src/app/services-http/clientes.service.http";
-import { Observable } from "rxjs";
-
-const clientes: ICliente[] = [
-    {
-        nome: "João",
-        email: "",
-        telefone: "",
-        cpf: "",
-        dataNascimento: new Date(),
-        endereco: "",
-        cidade: "",
-        estado: "",
-        cep: "",
-        dataCadastro: new Date(),
-    },
-    {
-        nome: "Maria",
-        email: "",
-        telefone: "",
-        cpf: "",
-        dataNascimento: new Date(),
-        endereco: "",
-        cidade: "",
-        estado: "",
-        cep: "",
-        dataCadastro: new Date(),
-    },
-];
+import { Observable, of } from "rxjs";
 
 @Component({
     selector: "app-clientes",
@@ -38,7 +11,12 @@ const clientes: ICliente[] = [
 export class ClientesComponent implements OnInit {
     constructor(private clientesServiceHttp: ClientesServiceHttp) {}
 
-    clientes: ICliente[] = clientes;
+    clientes: Observable<ICliente[]> = new Observable<ICliente[]>();
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.clientesServiceHttp.getClientes().subscribe((data) => {
+            console.log(data);
+            this.clientes = of(data);
+        });
+    }
 }

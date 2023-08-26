@@ -6,13 +6,15 @@
             <th>CPF</th>
             <th>Endereço</th>
             <th>Telefone</th>
+            <th>Data Nascimento</th>
         </thead>
         <tbody>
-            <tr *ngFor="let cliente of clientes">
+            <tr *ngFor="let cliente of clientes | async">
                 <td>{{ cliente.nome }}</td>
                 <td>{{ cliente.cpf }}</td>
                 <td>{{ cliente.endereco }}</td>
                 <td>{{ cliente.telefone }}</td>
+                <td>{{ cliente.dataNascimento | date : "dd/MM/yy" }}</td>
             </tr>
         </tbody>
     </table>

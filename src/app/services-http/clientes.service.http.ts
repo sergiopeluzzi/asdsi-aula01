@@ -16,6 +16,6 @@ export class ClientesServiceHttp {
     };
 
     getClientes(): Observable<ICliente[]> {
-        return this.http.get<ICliente[]>(this.apiUrl);
+        return this.http.get<ICliente[]>(this.apiUrl, this.httpOptions);
     }
 }
